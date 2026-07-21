@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NN's Create-сервер</title>
+
+    <meta name="description"
+        content="Create-сервер Minecraft. Строй, прокачивай, вдохновляйся вместе с нами.">
+
+
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="container">
+
+            <a href="#" class="logo">
+                <img src="./img/logo.png" alt="NN's">
+            </a>
+
+            <nav class="navigation">
+
+                <a href="#hero">Главная</a>
+
+                <a href="#support">Поддержка</a>
+
+                <a href="#faq">FAQ</a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="hero">
+
+            <div class="container hero-container">
+
+                <div class="hero-content">
+
+                    <h1>Create-сервер</h1>
+
+                    <p>
+                        Место для инженеров и творцов.
+                        <br>
+                        Строй, прокачивай, вдохновляйся.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="./files/NN_Create_Modpack.zip" download="NN_Create_Server.rar" class="button primary">
+
+                            Скачать моды
+
+                        </a>
+
+                        <button class="button secondary" id="copyIP">
+
+                            IP: mc.odeyalko.space
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="hero-image">
+
+                    <div class="hero-glow"></div>
+
+                    <img
+                        src="./img/hero.png"
+                        alt="Minecraft Character">
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= FAQ ================= -->
+
+        <section class="faq" id="faq">
+
+            <div class="container">
+
+                <h2>FAQ</h2>
+
+                <div class="faq-box">
+
+                    <div class="faq-item">
+
+                        <h3>1. Какая версия Minecraft нужна?</h3>
+
+                        <p>
+                            Версия NeoForge 1.21.1.
+                            Сборка модов уже ждёт вас по кнопке
+                            «Скачать моды».
+                        </p>
+
+                    </div>
+
+                    <div class="faq-item">
+
+                        <h3>2. Нужно ли покупать лицензию?</h3>
+
+                        <p>
+                            Нет, сервер работает и на лицензии,
+                            и на пиратских лаунчерах.
+                        </p>
+
+                    </div>
+
+                    <div class="faq-item">
+
+                        <h3>3. Можно ли гриферить и воровать?</h3>
+
+                        <p>
+                            Нет. У нас дружелюбное сообщество.
+                            Гриферы и воры получают бан
+                            без предупреждения.
+                        </p>
+
+                    </div>
+
+                    <div class="faq-item">
+
+                        <h3>4. Будут ли сбрасывать мир (вайп)?</h3>
+
+                        <p>
+                            Карта сохраняется надолго.
+                            Если вайп и случится —
+                            мы предупредим заранее
+                            в Telegram и Discord.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= SUPPORT ================= -->
+
+        <section class="support" id="support">
+
+            <div class="container">
+
+                <h2>
+
+                    Не нашли ответ в FAQ?
+
+                </h2>
+
+                <div class="support-box">
+
+                    <p>
+
+                        Напишите в поддержку —
+                        мы ответим в течение часа.
+
+                    </p>
+
+                    <form id="supportForm">
+
+                        <textarea
+                            id="message"
+                            placeholder="Опишите вашу проблему или вопрос"
+                            required></textarea>
+
+                        <div class="support-right">
+
+                            <input
+                                id="email"
+                                type="email"
+                                placeholder="Ваш email"
+                                required>
+
+                            <button type="submit">
+
+                                Отправить
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= SOCIALS ================= -->
+
+        <section class="socials">
+
+            <div class="container">
+
+                <h2>
+
+                    Присоединяйтесь к нашему сообществу!
+
+                </h2>
+
+                <div class="social-icons">
+
+                    <a href="https://t.me/odeyalkogreet" target="_blank">
+
+                        <img src="./img/icons/tg.png" alt="Telegram">
+
+                    </a>
+
+                    <a href="https://discord.gg/5ETQrY6WNB" target="_blank">
+
+                        <img src="./img/icons/dc.png" alt="Discord">
+
+                    </a>
+
+                    <a href="https://www.youtube.com/@odeyalko1" target="_blank">
+
+                        <img src="./img/icons/yt.png" alt="YouTube">
+
+                    </a>
+
+                    <a href="https://www.twitch.tv/odeyalko_1" target="_blank">
+
+                        <img src="./img/icons/tw.png" alt="Twitch">
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="bottom-glow"></div>
+
+        </section>
+
+    </main>
+
+    <script>
+        const copyButton = document.getElementById("copyIP");
+
+        copyButton.addEventListener("click", async () => {
+
+            const ip = "mc.odeyalko.space";
+
+            try {
+
+                await navigator.clipboard.writeText(ip);
+
+                const originalText = copyButton.textContent;
+
+                copyButton.textContent = "✓ IP скопирован!";
+
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                }, 2000);
+
+            } catch {
+
+                alert("Не удалось скопировать IP.");
+
+            }
+
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+
+        emailjs.init({
+            publicKey: "HO6_6KbjPS1fD7X4V"
+        });
+
+        const form = document.getElementById("supportForm");
+
+        form.addEventListener("submit", function(e){
+
+            e.preventDefault();
+
+            emailjs.send(
+                "service_e148hfg",
+                "template_aaetjbn",
+                {
+                    email: document.getElementById("email").value,
+                    message: document.getElementById("message").value
+                }
+            )
+
+            .then(function(){
+
+                alert("Сообщение успешно отправлено!");
+
+                form.reset();
+
+            })
+
+            .catch(function(error){
+
+                alert("Ошибка отправки.");
+
+                console.log(error);
+
+            });
+
+        });
+
+        </script>
+
+</body>
+
+</html>
