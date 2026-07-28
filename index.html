@@ -61,19 +61,17 @@
                     </p>
 
                     <div class="hero-buttons">
-
                         <a href="https://drive.google.com/file/d/1bB8xaETgvPnYd6YRflnBQfx7uDekATOI/view?usp=sharing" target="_blank" class="button primary">
-
                             Скачать моды
+                        </a>
 
+                        <a href="https://donatex.gg/donate/kvass" class="button donate" target="_blank" rel="noopener noreferrer">
+                            Купить проходку
                         </a>
 
                         <button class="button secondary" id="copyIP">
-
                             IP: mc.odeyalko.space
-
                         </button>
-
                     </div>
 
                 </div>
@@ -259,25 +257,49 @@
     <script>
         const copyButton = document.getElementById("copyIP");
 
-        copyButton.addEventListener("click", async () => {
+        copyButton.addEventListener("click", function(){
 
             const ip = "mc.odeyalko.space";
 
-            try {
+            if(navigator.clipboard){
 
-                await navigator.clipboard.writeText(ip);
+                navigator.clipboard.writeText(ip)
+                    .then(success)
+                    .catch(fallback);
 
-                const originalText = copyButton.textContent;
+            }else{
+
+                fallback();
+
+            }
+
+            function success(){
+
+                const text = copyButton.textContent;
 
                 copyButton.textContent = "✓ IP скопирован!";
 
-                setTimeout(() => {
-                    copyButton.textContent = originalText;
-                }, 2000);
+                setTimeout(()=>{
+                    copyButton.textContent=text;
+                },2000);
 
-            } catch {
+            }
 
-                alert("Не удалось скопировать IP.");
+            function fallback(){
+
+                const input=document.createElement("input");
+
+                input.value=ip;
+
+                document.body.appendChild(input);
+
+                input.select();
+
+                document.execCommand("copy");
+
+                document.body.removeChild(input);
+
+                success();
 
             }
 
