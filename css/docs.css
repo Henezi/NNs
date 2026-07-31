@@ -1,0 +1,563 @@
+/* ==========================================================
+   FONTS
+========================================================== */
+
+@font-face {
+    font-family: 'Actay';
+    src: url('../fonts/Actay-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Actay Wide';
+    src: url('../fonts/ActayWide-Bold.otf') format('opentype');
+}
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    background:#090909;
+    color:#fff;
+    font-family:'Actay',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+    min-height:100vh;
+
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+h1,h2,h3,.navigation,.logo{
+    font-family:'Actay Wide',sans-serif;
+}
+
+/* ==========================================================
+   VARIABLES
+========================================================== */
+
+:root{
+
+    --blue:#1498CC;
+    --blueHover:#18AFE9;
+    --panel:#12242C;
+    --text:#D7D7D7;
+    --radius:24px;
+
+}
+
+/* ==========================================================
+   BACKGROUND GLOW
+========================================================== */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    right:-200px;
+    top:-150px;
+
+    width:700px;
+    height:700px;
+
+    background:#1498CC;
+
+    opacity:.18;
+
+    filter:blur(180px);
+
+    border-radius:50%;
+
+    z-index:-2;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    left:-300px;
+    bottom:-200px;
+
+    width:900px;
+    height:900px;
+
+    background:#1498CC;
+
+    opacity:.14;
+
+    filter:blur(220px);
+
+    border-radius:50%;
+
+    z-index:-2;
+
+}
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.container{
+
+    width:100%;
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:0 32px;
+
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header{
+    padding:30px 0;
+    position:relative;
+    z-index:50;
+}
+
+.header .container{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.logo img{
+    width:110px;
+    transition:.3s;
+}
+
+.logo:hover img{
+    transform:scale(1.05);
+}
+
+.navigation{
+    display:flex;
+    align-items:center;
+    gap:80px;
+}
+
+.navigation a{
+    position:relative;
+    font-size:20px;
+    color:#F2F2F2;
+    transition:.3s;
+}
+
+.navigation a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:2px;
+    background:var(--blue);
+    transition:.3s;
+}
+
+.navigation a:hover{
+    color:#fff;
+}
+
+.navigation a:hover::after,
+.navigation .active::after{
+
+    width:100%;
+
+}
+
+.navigation .active{
+
+    color:var(--blueHover);
+
+}
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.docs-hero{
+
+    padding:90px 0 70px;
+
+    text-align:center;
+
+}
+
+.docs-hero h1{
+
+    font-size:70px;
+
+    margin-bottom:24px;
+
+}
+
+.docs-hero p{
+
+    font-size:28px;
+
+    color:var(--text);
+
+    max-width:900px;
+
+    margin:auto;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+   DOCUMENTS
+========================================================== */
+
+.documents{
+
+    padding-bottom:120px;
+
+}
+
+.documents-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:40px;
+
+}
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.doc-card{
+
+    position:relative;
+
+    background:rgba(18,36,44,.92);
+
+    border-radius:30px;
+
+    padding:50px;
+
+    border:2px solid rgba(20,152,204,.35);
+
+    overflow:hidden;
+
+    transition:.35s;
+
+}
+
+.doc-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.05),
+        transparent 45%
+    );
+
+    opacity:0;
+
+    transition:.35s;
+
+}
+
+.doc-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#1ABFFF;
+
+    box-shadow:
+
+        0 0 35px rgba(20,152,204,.25),
+
+        0 0 80px rgba(20,152,204,.12);
+
+}
+
+.doc-card:hover::before{
+
+    opacity:1;
+
+}
+
+.doc-icon{
+
+    font-size:64px;
+
+    margin-bottom:30px;
+
+}
+
+.doc-card h2{
+
+    font-size:38px;
+
+    margin-bottom:24px;
+
+}
+
+.doc-card p{
+
+    color:var(--text);
+
+    font-size:22px;
+
+    line-height:1.7;
+
+    margin-bottom:40px;
+
+}
+
+.doc-card span{
+
+    color:#31C4FF;
+
+    font-size:20px;
+
+    font-family:'Actay Wide';
+
+    transition:.3s;
+
+}
+
+.doc-card:hover span{
+
+    letter-spacing:1px;
+
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+footer{
+
+    padding:40px 0;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+footer p{
+
+    color:#999;
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#1498CC;
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#090909;
+
+}
+
+/* ==========================================================
+   ADAPTIVE
+========================================================== */
+
+@media(max-width:1100px){
+
+    .documents-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .navigation{
+
+        gap:35px;
+
+    }
+
+    .docs-hero h1{
+
+        font-size:52px;
+
+    }
+
+    .docs-hero p{
+
+        font-size:22px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .header .container{
+
+        flex-direction:column;
+
+        gap:30px;
+
+    }
+
+    .navigation{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+    .container{
+
+        padding:0 22px;
+
+    }
+
+    .docs-hero{
+
+        padding:60px 0;
+
+    }
+
+    .docs-hero h1{
+
+        font-size:42px;
+
+    }
+
+    .docs-hero p{
+
+        font-size:18px;
+
+    }
+
+    .doc-card{
+
+        padding:35px;
+
+    }
+
+    .doc-icon{
+
+        font-size:52px;
+
+    }
+
+    .doc-card h2{
+
+        font-size:28px;
+
+    }
+
+    .doc-card p{
+
+        font-size:18px;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .navigation{
+
+        gap:20px;
+
+    }
+
+    .navigation a{
+
+        font-size:16px;
+
+    }
+
+    .docs-hero h1{
+
+        font-size:34px;
+
+    }
+
+    .doc-card{
+
+        border-radius:20px;
+
+        padding:28px;
+
+    }
+
+    .doc-icon{
+
+        font-size:42px;
+
+    }
+
+    .doc-card h2{
+
+        font-size:24px;
+
+    }
+
+    .doc-card p{
+
+        font-size:16px;
+
+        margin-bottom:25px;
+
+    }
+
+}
