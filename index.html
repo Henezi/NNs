@@ -63,10 +63,8 @@
                 </div>
                 <div class="hero-image">
                     <div class="hero-glow"></div>
-                    <img
-                        src="./img/hero.png"
-                        alt="Minecraft Character">
-                    </img>
+
+                    <canvas id="minecraft-model"></canvas>
                 </div>
 
             </div>
@@ -345,6 +343,269 @@
             });
 
         });
+
+        </script>
+
+        <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+            }
+        }
+        </script>
+
+        <script type="module">
+            import * as THREE from 'three';
+            import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+            const canvas = document.getElementById('minecraft-model');
+            const heroImage = document.querySelector('.hero-image');
+
+            // ==========================================
+            // SCENE
+            // ==========================================
+
+            const scene = new THREE.Scene();
+
+            // ==========================================
+            // CAMERA
+            // ==========================================
+
+            const camera = new THREE.PerspectiveCamera(
+                35,
+                canvas.clientWidth / canvas.clientHeight,
+                0.1,
+                100
+            );
+
+            camera.position.set(-0.2, 0, 7);
+
+            // ==========================================
+            // RENDERER
+            // ==========================================
+
+            const renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                alpha: true,
+                antialias: true
+            });
+
+            renderer.setPixelRatio(
+                Math.min(window.devicePixelRatio, 2)
+            );
+
+            renderer.setSize(
+                canvas.clientWidth,
+                canvas.clientHeight,
+                false
+            );
+
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+            // ==========================================
+            // LIGHT
+            // ==========================================
+
+            const ambientLight = new THREE.AmbientLight(
+                0xffffff,
+                2.2
+            );
+
+            scene.add(ambientLight);
+
+
+            const directionalLight = new THREE.DirectionalLight(
+                0xffffff,
+                3
+            );
+
+            directionalLight.position.set(
+                3,
+                5,
+                5
+            );
+
+            scene.add(directionalLight);
+
+
+            // ==========================================
+            // MODEL
+            // ==========================================
+
+            let model = null;
+
+            const loader = new GLTFLoader();
+
+            loader.load(
+                './models/Art_3d.gltf',
+
+                function (gltf) {
+
+                    model = gltf.scene;
+
+                    // ----------------------------------
+                    // РАЗМЕР МОДЕЛИ
+                    // ----------------------------------
+
+                    model.scale.set(
+                        1.0,
+                        1.0,
+                        1.0
+                    );
+
+                    // ----------------------------------
+                    // ПОЛОЖЕНИЕ
+                    // ----------------------------------
+
+                    model.position.set(
+                        0,
+                        -1.0,
+                        0
+                    );
+
+                    scene.add(model);
+
+                    console.log('3D модель загружена');
+
+                },
+
+                function (progress) {
+
+                    if (progress.total > 0) {
+
+                        console.log(
+                            'Загрузка модели:',
+                            Math.round(
+                                progress.loaded / progress.total * 100
+                            ) + '%'
+                        );
+
+                    }
+
+                },
+
+                function (error) {
+
+                    console.error(
+                        'Ошибка загрузки 3D-модели:',
+                        error
+                    );
+
+                }
+            );
+
+
+            // ==========================================
+            // MOUSE
+            // ==========================================
+
+            let mouseX = 0;
+            let mouseY = 0;
+
+            let targetRotationY = 0;
+            let targetRotationX = 0;
+
+            let currentRotationY = 0;
+            let currentRotationX = 0;
+
+
+            document.addEventListener('mousemove', function (event) {
+
+                // Координаты мыши от -1 до 1
+                mouseX =
+                    (event.clientX / window.innerWidth) * 2 - 1;
+
+                mouseY =
+                    (event.clientY / window.innerHeight) * 2 - 1;
+
+                // Ограничиваем поворот
+                targetRotationY = mouseX * 0.18;
+
+                targetRotationX = mouseY * 0.08;
+
+            });
+
+
+            // ==========================================
+            // ANIMATION
+            // ==========================================
+
+            const clock = new THREE.Clock();
+
+            function animate() {
+
+                requestAnimationFrame(animate);
+
+                const time = clock.getElapsedTime();
+
+
+                if (model) {
+
+                    // ----------------------------------
+                    // ПЛАВНЫЙ ПОВОРОТ ЗА МЫШКОЙ
+                    // ----------------------------------
+
+                    currentRotationY +=
+                        (targetRotationY - currentRotationY) * 0.05;
+
+                    currentRotationX +=
+                        (targetRotationX - currentRotationX) * 0.05;
+
+
+                    model.rotation.y = currentRotationY;
+
+                    model.rotation.x = currentRotationX;
+
+
+                    // ----------------------------------
+                    // ЛЁГКОЕ ПЛАВАНИЕ
+                    // ----------------------------------
+
+                    model.position.y =
+                        -1.0 + Math.sin(time * 1.2) * 0.035;
+
+                }
+
+
+                renderer.render(
+                    scene,
+                    camera
+                );
+
+            }
+
+            animate();
+
+
+            // ==========================================
+            // RESIZE
+            // ==========================================
+
+            function resize() {
+
+                const width = canvas.clientWidth;
+                const height = canvas.clientHeight;
+
+                if (!width || !height) return;
+
+                camera.aspect =
+                    width / height;
+
+                camera.updateProjectionMatrix();
+
+                renderer.setSize(
+                    width,
+                    height,
+                    false
+                );
+
+            }
+
+            window.addEventListener(
+                'resize',
+                resize
+            );
 
         </script>
 
